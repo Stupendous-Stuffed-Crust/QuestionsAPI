@@ -3,8 +3,8 @@ CREATE TABLE Questions (
  product_id INTEGER NOT NULL,
  body TEXT NOT NULL,
  date_written DATE NOT NULL,
- asker_name VARCHAR NOT NULL,
- asker_email VARCHAR,
+ asker_name TEXT NOT NULL,
+ asker_email TEXT,
  reported BOOLEAN,
  helpful INTEGER
 );
@@ -17,8 +17,8 @@ CREATE TABLE Answers (
  question_id INTEGER NOT NULL,
  body TEXT NOT NULL,
  date_written DATE NOT NULL,
- answerer_name VARCHAR NOT NULL,
- answerer_email VARCHAR,
+ answerer_name TEXT NOT NULL,
+ answerer_email TEXT,
  reported BOOLEAN,
  helpful INTEGER
 );
