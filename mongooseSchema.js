@@ -8,15 +8,15 @@ const questionSchema = new Schema({
   body: String,
   date: Date,
   asker_name: String,
+  asker_email: String,
   helpfulness: Number,
   reported: Boolean,
-  page: Number,
-  answer_count: Number,
   answers: [{
     id: Number,
     body: String,
     date: Date,
     answerer_name: String,
+    answerer_email: String,
     helpfulness: Number,
     photos: [{
       id: Number,
