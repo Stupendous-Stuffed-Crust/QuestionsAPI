@@ -1,0 +1,12 @@
+.DS_STORE
+
+*.env
+
+node_modules/
+
+build/
+dist/
+
+lib-cov
+
+coverage
