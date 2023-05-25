@@ -1,8 +1,12 @@
+DROP TABLE IF EXISTS questions CASCADE;
+DROP TABLE IF EXISTS answers CASCADE;
+DROP TABLE IF EXISTS photos CASCADE;
+
 CREATE TABLE Questions (
  id BIGSERIAL NOT NULL,
  product_id INTEGER NOT NULL,
  body TEXT NOT NULL,
- date_written DATE NOT NULL,
+ date_written TEXT NOT NULL,
  asker_name TEXT NOT NULL,
  asker_email TEXT,
  reported BOOLEAN,
@@ -16,7 +20,7 @@ CREATE TABLE Answers (
  id BIGSERIAL NOT NULL,
  question_id INTEGER NOT NULL,
  body TEXT NOT NULL,
- date_written DATE NOT NULL,
+ date_written TEXT NOT NULL,
  answerer_name TEXT NOT NULL,
  answerer_email TEXT,
  reported BOOLEAN,
