@@ -1,6 +1,7 @@
 .DS_STORE
 
 *.env
+*.csv
 
 node_modules/
 

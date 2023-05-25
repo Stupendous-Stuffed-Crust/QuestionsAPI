@@ -1,38 +1,43 @@
+DROP TABLE IF EXISTS questions CASCADE;
+DROP TABLE IF EXISTS answers CASCADE;
+DROP TABLE IF EXISTS photos CASCADE;
+
 CREATE TABLE Questions (
- question_id BIGSERIAL,
- product_id INTEGER,
- body TEXT,
- date DATE,
- asker_name TEXT,
- helpfulness INTEGER,
+ id BIGSERIAL NOT NULL,
+ product_id INTEGER NOT NULL,
+ body TEXT NOT NULL,
+ date_written TEXT NOT NULL,
+ asker_name TEXT NOT NULL,
+ asker_email TEXT,
  reported BOOLEAN,
- page INTEGER,
- answer_count INTEGER
+ helpful INTEGER
 );
 
 
-ALTER TABLE Questions ADD CONSTRAINT Questions_pkey PRIMARY KEY (question_id);
+ALTER TABLE Questions ADD CONSTRAINT Questions_pkey PRIMARY KEY (id);
 
 CREATE TABLE Answers (
- answer_id BIGSERIAL,
- question_id INTEGER,
- body INTEGER,
- date DATE,
- answerer_name TEXT,
- helpfulness INTEGER
+ id BIGSERIAL NOT NULL,
+ question_id INTEGER NOT NULL,
+ body TEXT NOT NULL,
+ date_written TEXT NOT NULL,
+ answerer_name TEXT NOT NULL,
+ answerer_email TEXT,
+ reported BOOLEAN,
+ helpful INTEGER
 );
 
 
-ALTER TABLE Answers ADD CONSTRAINT Answers_pkey PRIMARY KEY (answer_id);
+ALTER TABLE Answers ADD CONSTRAINT Answers_pkey PRIMARY KEY (id);
 
 CREATE TABLE photos (
- id BIGSERIAL,
- url TEXT,
- answer_id INTEGER
+ id BIGSERIAL NOT NULL,
+ url TEXT NOT NULL,
+ answer_id INTEGER NOT NULL
 );
 
 
 ALTER TABLE photos ADD CONSTRAINT photos_pkey PRIMARY KEY (id);
 
-ALTER TABLE Answers ADD CONSTRAINT Answers_question_id_fkey FOREIGN KEY (question_id) REFERENCES Questions(question_id);
-ALTER TABLE photos ADD CONSTRAINT photos_answer_id_fkey FOREIGN KEY (answer_id) REFERENCES Answers(answer_id);
+ALTER TABLE Answers ADD CONSTRAINT Answers_question_id_fkey FOREIGN KEY (question_id) REFERENCES Questions(id);
+ALTER TABLE photos ADD CONSTRAINT photos_answer_id_fkey FOREIGN KEY (answer_id) REFERENCES Answers(id);
