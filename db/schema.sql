@@ -1,5 +1,5 @@
 -- psql command to run this file in terminal:
--- \i /Users/noahbeito/Desktop/RFP2303/QuestionsAPI/schema.sql
+-- \i /Users/noahbeito/Desktop/RFP2303/QuestionsAPI/db/schema.sql
 
 DROP TABLE IF EXISTS questions CASCADE;
 DROP TABLE IF EXISTS answers CASCADE;
