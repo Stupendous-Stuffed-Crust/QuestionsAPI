@@ -1,9 +1,9 @@
 // Connect to PostgreSQL database and export connection instance via db
 
 require('dotenv').config();
-const { Client } = require('pg');
+const { Pool } = require('pg');
 
-const client = new Client({
+const pool = new Pool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   database: process.env.DB_NAME,
@@ -11,6 +11,4 @@ const client = new Client({
   password: process.env.DB_PASSWORD,
 });
 
-client.connect();
-
-module.exports.client = client;
+module.exports.pool = pool;

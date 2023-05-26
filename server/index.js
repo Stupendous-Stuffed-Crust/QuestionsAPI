@@ -3,7 +3,7 @@ const path = require('path');
 
 const express = require('express');
 const morgan = require('morgan');
-const { questionRouter } = require('./routes/questions');
+const { router } = require('./routes');
 
 const app = express();
 app.use(morgan('dev'));
@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.use('/questions', questionRouter);
+app.use('/qa', router);
 
 const PORT = process.env.PORT || 3000;
 

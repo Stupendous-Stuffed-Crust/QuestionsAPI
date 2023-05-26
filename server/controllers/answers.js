@@ -1,18 +1,41 @@
-const getAnswers = (req, res) => {
-  // invoke model method with data included with req
+const { get, post } = require('../models/answers');
 
-  // wait for response
+module.exports = {
+  getAnswers(req, res) {
+    get(req.body.question_id)
+      .then((data) => {
+        // handle data?
+        res.status(200).send(data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send(err);
+      });
+  },
 
-  // send response with code
-};
+  postAnswer(req, res) {
+    const questionId = req.body.question_id;
+    const { body } = req.body;
+    const dateWritten = req.body.date_written;
+    const answererName = req.body.answerer_name;
+    const answererEmail = req.body.answerer_email;
 
-const postAnswer = (req, res) => {
+    post(questionId, body, dateWritten, answererName, answererEmail)
+      .then((data) => {
+        // handle data
+        res.status(201).send(data.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send(err);
+      });
+  },
 
-};
+  // reportAnswer(req, res) {
+  // },
 
-const reportAnswer = (req, res) => {
-};
+  // markHelpfulAnswer(req, res) {
 
-const markHelpfulAnswer = (req, res) => {
+  // },
 
 };

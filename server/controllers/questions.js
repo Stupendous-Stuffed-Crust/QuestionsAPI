@@ -2,11 +2,10 @@ const { get, post } = require('../models/questions');
 
 module.exports = {
   getQuestions(req, res) {
-    // invoke model method with data included with req
-    const productId = req.body.product_id;
-    get(productId)
+    const productId = req.query.product_id;
+    return get(productId)
       .then((data) => {
-        res.status(200).send(data.data); // likely need to restructure data for client
+        res.status(200).send(data.rows); // likely need to restructure data for client
       })
       .catch((err) => {
         console.error(err);
