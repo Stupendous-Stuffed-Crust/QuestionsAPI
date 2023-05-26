@@ -2,10 +2,9 @@ const { get, post } = require('../models/answers');
 
 module.exports = {
   getAnswers(req, res) {
-    get(req.body.question_id)
+    get(req.query.question_id)
       .then((data) => {
-        // handle data?
-        res.status(200).send(data.data);
+        res.status(200).send(data.rows);
       })
       .catch((err) => {
         console.error(err);

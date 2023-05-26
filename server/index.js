@@ -1,5 +1,4 @@
 require('dotenv').config();
-const path = require('path');
 
 const express = require('express');
 const morgan = require('morgan');
@@ -11,9 +10,8 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({
   extended: true,
 }));
-app.use(express.json());
 
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.json());
 
 app.use('/qa', router);
 
