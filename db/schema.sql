@@ -13,8 +13,8 @@ CREATE TABLE questions (
  date_written BIGINT NOT NULL,
  asker_name TEXT NOT NULL,
  asker_email TEXT,
- reported BOOLEAN,
- helpful INTEGER
+ reported BOOLEAN DEFAULT false,
+ helpful INTEGER DEFAULT 0
 );
 
 
@@ -27,8 +27,8 @@ CREATE TABLE answers (
  date_written BIGINT NOT NULL,
  answerer_name TEXT NOT NULL,
  answerer_email TEXT,
- reported BOOLEAN,
- helpful INTEGER
+ reported BOOLEAN DEFAULT false,
+ helpful INTEGER DEFAULT 0
 );
 
 

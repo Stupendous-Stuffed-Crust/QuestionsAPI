@@ -11,12 +11,12 @@ CREATE DATABASE qa;
 \i /Users/noahbeito/Desktop/RFP2303/QuestionsAPI/db/schema.sql
 \i /Users/noahbeito/Desktop/RFP2303/QuestionsAPI/db/import.sql
 
-\echo 'Delete and recreate qa_test db?'
-\prompt 'Return for yes or control-C to cancel >' answer
+-- \echo 'Delete and recreate qa_test db?'
+-- \prompt 'Return for yes or control-C to cancel >' answer
 
-DROP DATABASE qa_test;
-CREATE DATABASE qa_test;
-\connect qa_test;
+-- DROP DATABASE qa_test;
+-- CREATE DATABASE qa_test;
+-- \connect qa_test;
 
-\i /Users/noahbeito/Desktop/RFP2303/QuestionsAPI/db/schema.sql
-\i /Users/noahbeito/Desktop/RFP2303/QuestionsAPI/db/import.sql
+-- \i /Users/noahbeito/Desktop/RFP2303/QuestionsAPI/db/schema.sql
+-- \i /Users/noahbeito/Desktop/RFP2303/QuestionsAPI/db/import.sql

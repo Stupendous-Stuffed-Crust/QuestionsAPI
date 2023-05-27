@@ -44,6 +44,7 @@ module.exports = {
 
   markHelpfulQuestion(req, res) {
     const questionId = req.params.question_id;
+    console.log('questionID', questionId);
     return markHelpful(questionId)
       .then(() => res.sendStatus(204))
       .catch((err) => {
