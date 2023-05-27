@@ -6,16 +6,28 @@ module.exports = (app) => {
   describe('Questions Routes', () => {
     const agent = request(app);
 
-    test('Should successfully GET question when request is sent to qa/questions', async () => {
+    test('Should GET question when request is sent to /qa/questions', async () => {
       const productId = 41009;
 
-      await agent.get('/qa/questions')
-        .query({ product_id: productId })
-        .expect(200);
+      const response = await agent.get('/qa/questions')
+        .query({ product_id: productId });
+      expect(response.status).toBe(200);
+    });
+
+    // THIS TEST IS FAILING. Recieving status 500.
+    test('Should POST question when request is sent to /qa/questions', async () => {
+      const response = await agent.post('/qa/questions')
+        .send({
+          body: 'fake test question',
+          asker_name: 'fakeName',
+          asker_email: 'fake.email.com',
+          product_id: 41009,
+        });
+      expect(response.status).toBe(201);
     });
 
     // Need to mock db as we dont want to be changing real data;
-    test('Should successfully mark question helpful when PUT request is sent to qa/questions/:question_id/helpful', async () => {
+    test('Should mark question helpful when PUT request is sent to /qa/questions/:question_id/helpful', async () => {
       const questionId = 144400;
 
       await agent.put(`/qa/questions/${questionId}/helpful`)
@@ -23,7 +35,7 @@ module.exports = (app) => {
     });
 
     // Need to mock db as we dont want to be changing real data;
-    test('Should successfully report question when PUT request is sent to qa/questions/:question_id/report', async () => {
+    test('Should report question when PUT request is sent to /qa/questions/:question_id/report', async () => {
       const questionId = 144400;
 
       await agent.put(`/qa/questions/${questionId}/report`)
