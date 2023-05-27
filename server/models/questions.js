@@ -11,10 +11,11 @@ module.exports = {
   },
 
   report(questionId) {
-    return pool.query('UPDATE questions SET reported = true WHERE question_id = $1', [questionId]);
+    console.log('====', questionId);
+    return pool.query('UPDATE questions SET reported = true WHERE id = $1', [questionId]);
   },
 
   markHelpful(questionId) {
-    return pool.query('UPDATE questions SET helpful = helpful + 1 WHERE question_id = $1', [questionId]);
+    return pool.query('UPDATE questions SET helpful = helpful + 1 WHERE id = $1', [questionId]);
   },
 };

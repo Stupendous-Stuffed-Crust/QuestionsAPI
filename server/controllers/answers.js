@@ -1,8 +1,10 @@
-const { get, post } = require('../models/answers');
+const {
+  get, post, report, markHelpful,
+} = require('../models/answers');
 
 module.exports = {
   getAnswers(req, res) {
-    get(req.query.question_id)
+    return get(req.params.question_id)
       .then((data) => {
         res.status(200).send(data.rows);
       })
@@ -13,28 +15,41 @@ module.exports = {
   },
 
   postAnswer(req, res) {
-    const questionId = req.body.question_id;
-    const { body } = req.body;
-    const dateWritten = req.body.date_written;
-    const answererName = req.body.answerer_name;
-    const answererEmail = req.body.answerer_email;
+    const questionId = req.params.question_id;
+    const { body } = req.query;
+    const dateWritten = Date.now();
+    const answererName = req.query.answerer_name;
+    const answererEmail = req.query.answerer_email;
 
-    post(questionId, body, dateWritten, answererName, answererEmail)
-      .then((data) => {
+    return post(questionId, body, dateWritten, answererName, answererEmail)
+      .then((response) => {
         // handle data
-        res.status(201).send(data.data);
+        res.status(201).send(response);
       })
       .catch((err) => {
         console.error(err);
-        res.status(500).send(err);
+        res.status(500).send(err.stack);
       });
   },
 
-  // reportAnswer(req, res) {
-  // },
+  reportAnswer(req, res) {
+    const answerId = req.params.answer_id;
+    return report(answerId)
+      .then(() => res.sendStatus(201))
+      .catch((err) => {
+        console.error(err.stack);
+        res.status(500).send(err.stack);
+      });
+  },
 
-  // markHelpfulAnswer(req, res) {
-
-  // },
+  markHelpfulAnswer(req, res) {
+    const answerId = req.params.answer_id;
+    return markHelpful(answerId)
+      .then(() => res.sendStatus(201))
+      .catch((err) => {
+        console.error(err.stack);
+        res.status(500).send(err.stack);
+      });
+  },
 
 };

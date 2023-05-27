@@ -33,7 +33,7 @@ module.exports = {
   },
 
   reportQuestion(req, res) {
-    const questionId = req.query.question_id;
+    const questionId = req.params.question_id;
     return report(questionId)
       .then(() => res.sendStatus(201))
       .catch((err) => {
@@ -43,7 +43,7 @@ module.exports = {
   },
 
   markHelpfulQuestion(req, res) {
-    const questionId = req.query.question_id;
+    const questionId = req.params.question_id;
     return markHelpful(questionId)
       .then(() => res.sendStatus(201))
       .catch((err) => {
