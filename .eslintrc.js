@@ -9,6 +9,12 @@ module.exports = {
     'airbnb',
   ],
   overrides: [
+    {
+      files: ['**/__tests__/**', '**/*.test.js'],
+      env: {
+        jest: true,
+      },
+    },
   ],
   parserOptions: {
     ecmaVersion: 'latest',

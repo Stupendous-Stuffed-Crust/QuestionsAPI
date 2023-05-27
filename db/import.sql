@@ -1,4 +1,4 @@
--- psql command to run this file in terminal:
+-- psql command to run this file in psql shell:
 -- \i /Users/noahbeito/Desktop/RFP2303/QuestionsAPI/db/import.sql
 
 \COPY questions FROM '/Users/noahbeito/Desktop/RFP2303/QuestionsAPI/data/questions.csv' DELIMITER ',' CSV HEADER;

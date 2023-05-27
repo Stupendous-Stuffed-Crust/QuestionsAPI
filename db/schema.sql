@@ -1,4 +1,4 @@
--- psql command to run this file in terminal:
+-- psql command to run this file in psql shell:
 -- \i /Users/noahbeito/Desktop/RFP2303/QuestionsAPI/db/schema.sql
 
 DROP TABLE IF EXISTS questions CASCADE;
