@@ -17,11 +17,12 @@ module.exports = (app) => {
     // THIS TEST IS FAILING. Recieving status 500.
     test('Should POST question when request is sent to /qa/questions', async () => {
       const response = await agent.post('/qa/questions')
-        .send({
-          body: 'fake test question',
-          asker_name: 'fakeName',
-          asker_email: 'fake.email.com',
+        .query({
           product_id: 41009,
+          body: 'fake test question',
+          date_written: Date.now(),
+          name: 'fakeName',
+          email: 'fake.email.com',
         });
       expect(response.status).toBe(201);
     });
