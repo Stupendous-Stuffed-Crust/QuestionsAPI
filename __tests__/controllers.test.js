@@ -1,13 +1,14 @@
 /* eslint-env jest */
 
-jest.mock('../server/models/questions');
 const questionModels = require('../server/models/questions');
+
+jest.mock('../server/models/questions');
 
 const {
   getQuestions, postQuestion, reportQuestion, markHelpfulQuestion,
 } = require('../server/controllers/questions');
 
-const mockReq = { query: {}, params: {} };
+const mockReq = { query: { product_id: 41009 }, params: {} };
 const mockRes = {
   send(data) {
     this.response = data;
@@ -26,14 +27,16 @@ const mockData = {
   ],
 };
 
-describe('Questions Controllers', () => {
-  test('getQuestions', async () => {
-    questionModels.get.mockResolvedValue('I have been called once');
-    await getQuestions(mockReq, mockRes)
-      .then(() => {
-        expect(mockRes.response).toBeTruthy();
-        expect(mockRes.response).toBe('I have been called once');
-        expect(questionModels.get).toHaveBeenCalled();
-      });
+module.exports = () => {
+  describe('Questions Controllers', () => {
+    test('getQuestions', async () => {
+      questionModels.get.mockResolvedValue('I have been called once');
+      await getQuestions(mockReq, mockRes)
+        .then(() => {
+          expect(questionModels.get).toHaveBeenCalled();
+          expect(mockRes.response).toBe('I have been called once');
+          expect(mockRes.response).toBeTruthy();
+        });
+    });
   });
-});
+};

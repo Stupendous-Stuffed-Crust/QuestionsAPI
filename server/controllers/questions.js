@@ -5,8 +5,10 @@ const {
 module.exports = {
   getQuestions(req, res) {
     const productId = req.query.product_id;
+    const page = req.query.page;
+    const count = req.query.count;
 
-    return get(productId)
+    return get(productId, page, count)
       .then((data) => {
         res.send(data.rows); // likely need to restructure data for client
       })

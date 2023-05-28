@@ -4,6 +4,7 @@ const app = require('../server/app');
 const { pool, close } = require('../server/db');
 
 const questionsTests = require('./questions.test');
+const controllersTests = require('./controllers.test');
 
 let server;
 
@@ -29,4 +30,5 @@ afterEach(async () => {
 
 describe('Server Routes', () => {
   questionsTests(app);
+  controllersTests();
 });
