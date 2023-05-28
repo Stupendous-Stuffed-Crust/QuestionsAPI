@@ -35,7 +35,7 @@ module.exports = {
   reportAnswer(req, res) {
     const answerId = req.params.answer_id;
     return report(answerId)
-      .then(() => res.sendStatus(201))
+      .then(() => res.sendStatus(204))
       .catch((err) => {
         console.error(err.stack);
         res.status(500).send(err.stack);
@@ -45,7 +45,7 @@ module.exports = {
   markHelpfulAnswer(req, res) {
     const answerId = req.params.answer_id;
     return markHelpful(answerId)
-      .then(() => res.sendStatus(201))
+      .then(() => res.sendStatus(204))
       .catch((err) => {
         console.error(err.stack);
         res.status(500).send(err.stack);

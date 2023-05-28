@@ -1,4 +1,4 @@
--- psql command to run this file in terminal:
+-- psql command to run this file in psql shell:
 -- \i /Users/noahbeito/Desktop/RFP2303/QuestionsAPI/db/schema.sql
 
 DROP TABLE IF EXISTS questions CASCADE;
@@ -13,8 +13,8 @@ CREATE TABLE questions (
  date_written BIGINT NOT NULL,
  asker_name TEXT NOT NULL,
  asker_email TEXT,
- reported BOOLEAN,
- helpful INTEGER
+ reported BOOLEAN DEFAULT false,
+ helpful INTEGER DEFAULT 0
 );
 
 
@@ -27,8 +27,8 @@ CREATE TABLE answers (
  date_written BIGINT NOT NULL,
  answerer_name TEXT NOT NULL,
  answerer_email TEXT,
- reported BOOLEAN,
- helpful INTEGER
+ reported BOOLEAN DEFAULT false,
+ helpful INTEGER DEFAULT 0
 );
 
 
