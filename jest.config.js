@@ -1,5 +1,5 @@
 module.exports = {
-  // automock: false,
+  // automock: true,
 
   testMatch: ['**/__tests__/**/index.js'],
 

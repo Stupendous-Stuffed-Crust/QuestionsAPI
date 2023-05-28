@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 const app = require('../server/app');
-const { pool } = require('../server/db');
+const { pool, close } = require('../server/db');
 
 const questionsTests = require('./questions.test');
 
@@ -15,6 +15,7 @@ beforeAll(() => {
 // after tests shut down the server
 afterAll((done) => {
   server.close();
+  close();
   done();
 });
 

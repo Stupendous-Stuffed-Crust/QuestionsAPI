@@ -11,4 +11,9 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
 });
 
+function close() {
+  return pool.end();
+}
+
 module.exports.pool = pool;
+module.exports.close = close;
