@@ -4,7 +4,7 @@ const { pool } = require('../db');
 module.exports = {
   get(productId, page = 1, count = 5) {
     const offset = page > 1 ? (page * count) - count : 0;
-    return pool.query('SELECT * FROM questions WHERE product_id = $1 LIMIT $2 OFFSET $3', [productId, count, offset]);
+    return pool.query('SELECT * FROM questions WHERE product_id = $1 AND reported = false LIMIT $2 OFFSET $3', [productId, count, offset]);
   },
 
   post(productId, body, dateWritten, askerName, askerEmail) {
