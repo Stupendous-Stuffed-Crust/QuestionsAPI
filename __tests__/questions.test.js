@@ -1,9 +1,17 @@
 /* eslint-env jest */
 
 const request = require('supertest');
+const { pool } = require('../server/db');
 
 module.exports = (app) => {
   describe('Questions Routes', () => {
+    beforeAll(async () => {
+      await pool.query('BEGIN');
+    });
+    afterAll(async () => {
+      await pool.query('ROLLBACK');
+    });
+
     const agent = request(app);
 
     test('Should GET question when request is sent to /qa/questions', async () => {
@@ -26,7 +34,6 @@ module.exports = (app) => {
       expect(response.status).toBe(201);
     });
 
-    // Need to mock db as we dont want to be changing real data;
     test('Should mark question helpful when PUT request is sent to /qa/questions/:question_id/helpful', async () => {
       const questionId = 144400;
 
@@ -34,7 +41,6 @@ module.exports = (app) => {
         .expect(204);
     });
 
-    // Need to mock db as we dont want to be changing real data;
     test('Should report question when PUT request is sent to /qa/questions/:question_id/report', async () => {
       const questionId = 144400;
 
