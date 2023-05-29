@@ -3,7 +3,8 @@ const { pool } = require('../db');
 module.exports = {
   get(questionId, page = 1, count = 5) {
     const offset = page > 1 ? (page * count) - count : 0;
-    return pool.query('SELECT * FROM answers WHERE question_id = $1 LIMIT $2 OFFSET $3', [questionId, count, offset]);
+    const query = 'SELECT answers.id, body, answerer_name, date_written, helpful, url FROM answers LEFT OUTER JOIN photos ON answers.id = answer_id WHERE question_id = $1 AND reported = false LIMIT $2 OFFSET $3';
+    return pool.query(query, [questionId, count, offset]);
   },
 
   post(questionId, body, dateWritten, answererName, answererEmail) {

@@ -14,7 +14,6 @@ module.exports = (app) => {
       expect(response.status).toBe(200);
     });
 
-    // THIS TEST IS FAILING. Recieving status 500.
     test('Should POST question when request is sent to /qa/questions', async () => {
       const response = await agent.post('/qa/questions')
         .query({
