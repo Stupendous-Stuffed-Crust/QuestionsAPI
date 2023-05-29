@@ -12,12 +12,10 @@ module.exports = {
   },
 
   report(answerId) {
-    console.log('reportID:', answerId);
     return pool.query('UPDATE answers SET reported = true WHERE id = $1', [answerId]);
   },
 
   markHelpful(answerId) {
-    console.log('helpID', answerId);
     return pool.query('UPDATE answers SET helpful = helpful + 1 WHERE id = $1', [answerId]);
   },
 };
