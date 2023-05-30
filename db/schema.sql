@@ -49,3 +49,4 @@ ALTER TABLE photos ADD CONSTRAINT photos_answer_id_fkey FOREIGN KEY (answer_id) 
 -- add index for columns that will be frequently used to significantly reduce read query times
 CREATE INDEX product_id_index ON questions (product_id);
 CREATE INDEX question_id_index ON answers (question_id);
+CREATE INDEX answer_id_index ON photos (answer_id);
