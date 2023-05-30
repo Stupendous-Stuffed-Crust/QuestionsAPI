@@ -1,7 +1,6 @@
 const { pool } = require('../db');
 
 module.exports = {
-
   get(questionId, page = 1, count = 5) {
     const offset = page > 1 ? (page * count) - count : 0;
     const query = `
