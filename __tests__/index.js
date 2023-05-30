@@ -1,9 +1,11 @@
 /* eslint-env jest */
 
 const app = require('../server/app');
-const { pool } = require('../server/db');
+const { close } = require('../server/db');
 
 const questionsTests = require('./questions.test');
+const controllersTests = require('./controllers.test');
+const answersTests = require('./answers.test');
 
 let server;
 
@@ -15,17 +17,12 @@ beforeAll(() => {
 // after tests shut down the server
 afterAll((done) => {
   server.close();
+  close();
   done();
-});
-
-beforeEach(async () => {
-  await pool.query('BEGIN');
-});
-
-afterEach(async () => {
-  await pool.query('ROLLBACK');
 });
 
 describe('Server Routes', () => {
   questionsTests(app);
+  answersTests(app);
+  controllersTests();
 });

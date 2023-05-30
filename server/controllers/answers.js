@@ -4,7 +4,9 @@ const {
 
 module.exports = {
   getAnswers(req, res) {
-    return get(req.params.question_id)
+    const questionId = req.params.question_id;
+    const { page, count } = req.query;
+    return get(questionId, page, count)
       .then((data) => {
         res.status(200).send(data.rows);
       })

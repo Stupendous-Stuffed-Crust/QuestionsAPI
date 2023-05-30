@@ -5,9 +5,11 @@ const {
 module.exports = {
   getQuestions(req, res) {
     const productId = req.query.product_id;
-    return get(productId)
+    const { page, count } = req.query;
+
+    return get(productId, page, count)
       .then((data) => {
-        res.status(200).send(data.rows); // likely need to restructure data for client
+        res.send(data.rows); // likely need to restructure data for client
       })
       .catch((err) => {
         console.error(err.stack);
@@ -44,7 +46,6 @@ module.exports = {
 
   markHelpfulQuestion(req, res) {
     const questionId = req.params.question_id;
-    console.log('questionID', questionId);
     return markHelpful(questionId)
       .then(() => res.sendStatus(204))
       .catch((err) => {

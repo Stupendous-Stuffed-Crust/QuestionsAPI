@@ -1,8 +1,10 @@
 const { pool } = require('../db');
 
 module.exports = {
-  get(questionId) {
-    return pool.query('SELECT * FROM answers WHERE question_id = $1', [questionId]);
+  get(questionId, page = 1, count = 5) {
+    const offset = page > 1 ? (page * count) - count : 0;
+    const query = 'SELECT answers.id, body, answerer_name, date_written, helpful, url FROM answers LEFT OUTER JOIN photos ON answers.id = answer_id WHERE question_id = $1 AND reported = false LIMIT $2 OFFSET $3';
+    return pool.query(query, [questionId, count, offset]);
   },
 
   post(questionId, body, dateWritten, answererName, answererEmail) {
@@ -10,12 +12,10 @@ module.exports = {
   },
 
   report(answerId) {
-    console.log('reportID:', answerId);
     return pool.query('UPDATE answers SET reported = true WHERE id = $1', [answerId]);
   },
 
   markHelpful(answerId) {
-    console.log('helpID', answerId);
     return pool.query('UPDATE answers SET helpful = helpful + 1 WHERE id = $1', [answerId]);
   },
 };

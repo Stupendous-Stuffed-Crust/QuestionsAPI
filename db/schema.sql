@@ -45,3 +45,7 @@ ALTER TABLE photos ADD CONSTRAINT photos_pkey PRIMARY KEY (id);
 
 ALTER TABLE answers ADD CONSTRAINT Answers_question_id_fkey FOREIGN KEY (question_id) REFERENCES questions(id);
 ALTER TABLE photos ADD CONSTRAINT photos_answer_id_fkey FOREIGN KEY (answer_id) REFERENCES answers(id);
+
+-- add index for columns that will be frequently used to significantly reduce read query times
+CREATE INDEX product_id_index ON questions (product_id);
+CREATE INDEX question_id_index ON answers (question_id);
