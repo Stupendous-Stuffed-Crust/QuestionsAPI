@@ -9,9 +9,9 @@ Goal: Redesign a monolithic API into microservices for an E-commerce application
 
 - Designed the architecture of the Questions & Answers microservice and scaled from 2 to 5 EC2 T2 micro instances, including the Postgres database, NGINX load balancer, and 3 express servers; comfortably handling 2000 RPS with a 23 ms latency and 0% error rate
 
--Implemented NGINX load balancer after using the CLI tool, htop, to identify the express server CPU usage as the bottleneck of the original 2-instance system, then horizontally scaled from 1 to 3 server instances, increasing throughput by 280%
+- Implemented NGINX load balancer after using the CLI tool, htop, to identify the express server CPU usage as the bottleneck of the original 2-instance system, then horizontally scaled from 1 to 3 server instances, increasing throughput by 280%
 
-- Integrated the least connected NGINX load balancing technique, increasing throughput by an additional 15% compared to round-robin
+- Used least connected NGINX load balancing technique, increasing throughput by an additional 15% compared to round-robin
 
 
 ![Loader.io](https://github.com/Stupendous-Stuffed-Crust/questions-api/assets/90667844/7dcf5a05-adae-4d93-bb98-ec5653a08bd1)
