@@ -1,3 +1,5 @@
+// This Schema was not used. Decided to use PostgreSQL database instead of MongoDB.
+
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
